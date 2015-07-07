@@ -1,0 +1,189 @@
+#
+# system.prop for ferrari
+#
+
+rild.libpath=/vendor/lib64/libril-qc-qmi-1.so
+rild.libargs=-d /dev/smd0
+persist.rild.nitz_plmn=
+persist.rild.nitz_long_ons_0=
+persist.rild.nitz_long_ons_1=
+persist.rild.nitz_long_ons_2=
+persist.rild.nitz_long_ons_3=
+persist.rild.nitz_short_ons_0=
+persist.rild.nitz_short_ons_1=
+persist.rild.nitz_short_ons_2=
+persist.rild.nitz_short_ons_3=
+persist.radio.rat_on=combine
+ril.subscription.types=NV,RUIM
+persist.sys.ssr.restart_level=ALL_ENABLE
+persist.sys.ssr.enable_ramdumps=1
+DEVICE_PROVISIONED=1
+
+persist.hwc.mdpcomp.enable=true
+debug.mdpcomp.logs=0
+dev.pm.dyn_samplingrate=1
+persist.demo.hdmirotationlock=false
+debug.mdpcomp.idletime=600
+debug.enable.sglscale=1
+
+ro.sf.lcd_density=480
+
+#
+# system props for the cne module
+#
+persist.cne.feature=1
+
+#system props for the MM modules
+media.stagefright.enable-player=true
+media.stagefright.enable-http=true
+media.stagefright.enable-aac=true
+media.stagefright.enable-qcp=true
+media.stagefright.enable-fma2dp=true
+media.stagefright.enable-scan=true
+media.msm8939hw=0
+mm.enable.smoothstreaming=true
+mmp.enable.3g2=true
+media.aac_51_output_enabled=true
+
+#codecs:DivxHD Divx FLAC QCP MP2TS 3G2 DTS AVI ASF AC3 AAC
+mm.enable.qcom_parser=3314291
+
+#
+# system props for the data modules
+#
+ro.use_data_netmgrd=true
+
+#system props for time-services
+persist.timed.enable=true
+
+#
+# system prop for opengles version
+#
+# 131072 is decimal for 0x30000 to report version 3
+ro.opengles.version=196608
+
+# System property for cabl
+ro.qualcomm.cabl=0
+ro.qcom.ad=1
+ro.qcom.ad.sensortype=2
+ro.qcom.ad.calib.data=/system/etc/calib.cfg
+
+#
+# System props for telephony
+# System prop to turn on CdmaLTEPhone always
+telephony.lteOnCdmaDevice=1
+
+#
+# System props for bluetooh
+# System prop to turn on hfp client
+bluetooth.hfp.client=1
+
+#Simulate sdcard on /data/media
+#
+persist.fuse_sdcard=true
+
+#
+#snapdragon value add features
+#
+ro.qc.sdk.audio.ssr=false
+##fluencetype can be "fluence" or "fluencepro" or "none"
+ro.qc.sdk.audio.fluencetype=fluence
+persist.audio.fluence.voicecall=true
+persist.audio.fluence.voicerec=false
+persist.audio.fluence.speaker=true
+#Set for msm8916
+tunnel.audio.encode = false
+#Buffer size in kbytes for compress offload playback
+audio.offload.buffer.size.kb=240
+#Minimum duration for offload playback in secs
+audio.offload.min.duration.secs=30
+#Enable offload audio video playback by default
+av.offload.enable=false
+#enable voice path for PCM VoIP by default
+use.voice.path.for.pcm.voip=true
+
+# button jack mode & switch
+persist.sys.button_jack_profile=volume
+persist.sys.button_jack_switch=0
+
+#System property for FM transmitter
+ro.fm.transmitter=false
+#enable dsp gapless mode by default
+audio.offload.gapless.enabled=true
+#Audio voice concurrency related flags
+voice.playback.conc.disabled=false
+voice.record.conc.disabled=true
+voice.voip.conc.disabled=true
+
+#Set read only default composition for USB
+ro.sys.usb.default.config=diag,serial_smd,rmnet_bam,adb
+
+#property to enable user to access Google WFD settings
+persist.debug.wfd.enable=1
+#property to enable VDS WFD solution
+persist.hwc.enable_vds=1
+#property to enable narrow search range for video encoding
+vidc.enc.narrow.searchrange=1
+
+persist.radio.multisim.config=dsds
+
+#disable audio offload mode
+audio.offload.disable=1
+audio.offload.pcm.enable=false
+
+#property to enable DS2 dap
+audio.dolby.ds2.enabled=true
+
+# enable usb otg setting
+persist.sys.isUsbOtgEnabled=true
+
+# Enalbe modem fast dormancy function
+persist.env.fastdorm.enabled=true
+persist.radio.data_no_toggle=1
+persist.fd.scroff.timer=3000
+persist.fd.scron.timer=10000
+
+# disable cross mapping
+persist.radio.disable_flexmap=1
+
+# enable xiaomi power ctrl
+persist.sys.power_ctrl=1
+
+#support LTE bands, should be same as NV6828
+persist.radio.lte_full_band=2061584302151
+
+# turn on short OOS enhancement
+ro.sys.oosenhance.enable=true
+ro.sys.oosenhance.timer=20000
+
+# enable dirac sound for speaker
+persist.audio.dirac.speaker=true
+
+#
+# ADDITIONAL_BUILD_PROPERTIES
+#
+persist.sys.mcd_config_file=/system/etc/mcd_default.conf
+persist.sys.klo=on
+drm.service.enabled=true
+ro.ril.hsxpa=1
+ro.ril.gprsclass=10
+ro.vendor.extension_library=libqti-perfd-client.so
+persist.radio.apm_sim_not_pwdn=0
+qcom.bt.dev_power_class=1
+ro.btconfig.if=smd
+ro.btconfig.dev=/dev/smd3
+ro.btconfig.vendor=qcom
+ro.btconfig.chip=WCN3680B
+persist.sys.ltm_enable=true
+assertdisplay.value=128
+net.bt.name=Android
+persist.gps.qc_nlp_in_use=1
+persist.loc.nlp_name=com.qualcomm.location
+ro.gps.agps_provider=1
+ro.pip.gated=0
+persist.data.qmi.adb_logmask=0
+ro.product.mod_device=ferrari_global
+ro.com.android.mobiledata=false
+ro.product.manufacturer=Xiaomi
+keyguard.no_require_sim=true
+persist.power.useautobrightadj=true
