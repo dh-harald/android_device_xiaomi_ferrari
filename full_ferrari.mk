@@ -15,7 +15,9 @@
 #
 
 # Inherit from those products. Most specific first.
+ifneq ($(FERRARI_32_BIT),true)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
+endif
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # Inherit from ferrari device

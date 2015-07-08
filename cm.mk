@@ -26,8 +26,6 @@ PRODUCT_MANUFACTURER := Xiaomi
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 
-TARGET_CONTINUOUS_SPLASH_ENABLED := true
-
 # Build prop overrides
 PRODUCT_BUILD_PROP_OVERRIDES += \
     TARGET_DEVICE="ferrari" \
