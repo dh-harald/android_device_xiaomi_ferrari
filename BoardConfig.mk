@@ -100,6 +100,7 @@ AUDIO_FEATURE_ENABLED_FM := true
 EXTENDED_FONT_FOOTPRINT := true
 
 # GPS
+TARGET_GPS_HAL_PATH := $(LOCAL_PATH)/gps
 TARGET_NO_RPC := true
 
 # Include path
@@ -190,6 +191,9 @@ BOARD_SEPOLICY_UNION += \
     system_server.te \
     system.te \
     wcnss_service.te
+
+# Time services
+BOARD_USES_QC_TIME_SERVICES := true
 
 # Vold
 BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
