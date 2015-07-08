@@ -158,7 +158,6 @@ BOARD_FLASH_BLOCK_SIZE              := 131072 # BOARD_KERNEL_PAGESIZE * 64
 TARGET_POWERHAL_VARIANT := qcom
 
 # Qualcomm support
-BOARD_USES_QC_TIME_SERVICES := true
 ifneq ($(QCPATH),)
 BOARD_USES_QCNE := true
 endif
