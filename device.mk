@@ -159,6 +159,10 @@ PRODUCT_PACKAGES += \
     libqcomfm_jni \
     qcom.fmradio
 
+# irqbalance
+PRODUCT_PACKAGES += \
+    $(LOCAL_PATH)/configs/msm_irqbalance.conf:system/vendor/etc/msm_irqbalance.conf
+
 # Keystore
 PRODUCT_PACKAGES += \
     keystore.msm8916

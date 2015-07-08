@@ -132,6 +132,11 @@ vendor/lib/libOmxEvrcDec.so
 vendor/lib/libOmxQcelp13Dec.so
 vendor/lib/libSHIMDivxDrm.so
 
+# Perf
+bin/msm_irqbalance
+bin/perfd
+vendor/lib64/libqti-perfd-client.so
+
 # Qualcomm framework
 bin/irsc_util
 vendor/lib64/libdiag.so
