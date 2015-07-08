@@ -192,8 +192,13 @@ BOARD_SEPOLICY_UNION += \
     system.te \
     wcnss_service.te
 
-# Time services
+# Qualcomm support
 BOARD_USES_QC_TIME_SERVICES := true
+ifneq ($(QCPATH),)
+BOARD_USES_QCNE := true
+endif
+BOARD_USES_QCOM_HARDWARE := true
+
 
 # Vold
 BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true

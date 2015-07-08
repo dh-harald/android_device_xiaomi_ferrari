@@ -300,6 +300,19 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.secure=0 \
     ro.adb.secure=0
 
+# Connectivity Engine support
+PRODUCT_PACKAGES += \
+    libcnefeatureconfig
+
+ifeq ($(BOARD_USES_QCNE),true)
+PRODUCT_PACKAGES += \
+    services-ext \
+    init.cne.rc
+
+PRODUCT_PROPERTY_OVERRIDES +=
+    persist.cne.feature=4
+endif
+
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.service.adb.enable=1 \
     persist.service.debuggable=1 \
