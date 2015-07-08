@@ -207,6 +207,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.qc.sdk.izat.premium_enabled=1 \
     ro.qc.sdk.izat.service_mask=0x5
 
+# Camera
+PRODUCT_PACKAGES += \
+    camera.msm8916 \
+    libmm-qcamera
+
 # lights
 PRODUCT_PACKAGES += \
     lights.msm8916
