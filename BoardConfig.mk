@@ -162,12 +162,6 @@ BOARD_FLASH_BLOCK_SIZE              := 131072 # BOARD_KERNEL_PAGESIZE * 64
 # Power
 TARGET_POWERHAL_VARIANT := qcom
 
-# Qualcomm support
-ifneq ($(QCPATH),)
-BOARD_USES_QCNE := true
-endif
-BOARD_USES_QCOM_HARDWARE := true
-
 # Recovery
 RECOVERY_FSTAB_VERSION := 2
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/root/fstab.qcom
