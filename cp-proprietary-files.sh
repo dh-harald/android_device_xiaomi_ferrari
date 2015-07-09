@@ -2,7 +2,7 @@
 
 VENDOR=xiaomi
 DEVICE=ferrari
-INDIR=~/ferrari/system
+INDIR=/opt/ferrari/system
 OUTDIR=../../../vendor/$VENDOR/$DEVICE/proprietary
 
 COUNT=`cat proprietary-files.txt | grep -v ^# | grep -v ^$ | wc -l | awk {'print $1'}`
