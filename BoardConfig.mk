@@ -64,6 +64,11 @@ TARGET_BOOTLOADER_BOARD_NAME := MSM8916
 TARGET_NO_BOOTLOADER := false
 TARGET_NO_KERNEL := false
 
+# Camera
+BOARD_CAMERA_SENSORS := imx135_cp8675 imx214_cp8675 ov5648_cp8675
+TARGET_USE_VENDOR_CAMERA_EXT := true
+USE_DEVICE_SPECIFIC_CAMERA := true
+
 # Charger
 BOARD_CHARGER_SHOW_PERCENTAGE := true
 BOARD_CHARGER_ENABLE_SUSPEND := true
@@ -191,8 +196,13 @@ BOARD_SEPOLICY_UNION += \
     system.te \
     wcnss_service.te
 
-# Time services
+# Qualcomm support
 BOARD_USES_QC_TIME_SERVICES := true
+ifneq ($(QCPATH),)
+BOARD_USES_QCNE := true
+endif
+BOARD_USES_QCOM_HARDWARE := true
+
 
 # Vold
 BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
