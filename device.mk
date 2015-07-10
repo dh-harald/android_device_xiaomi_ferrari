@@ -57,6 +57,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     hsic.control.bt.sh \
     init.qcom.bt.sh \
+    init.qcom.ril.sh \
     init.qcom.fm.sh \
     init.qcom.post_boot.sh \
     init.qcom.wifi.sh \
