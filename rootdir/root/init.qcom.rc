@@ -184,6 +184,10 @@ on boot
 
     # Enable manual network selection function and distinguish 2G/3G/4G
     setprop persist.radio.rat_on combine
+   
+    ## TelephonyManager.java requires this
+    chmod 0644 /proc/cmdline
+
 # msm specific files that need to be created on /data
 on post-fs-data
     # Create directory for TZ Apps
