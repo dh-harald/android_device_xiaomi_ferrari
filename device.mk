@@ -289,12 +289,6 @@ PRODUCT_PACKAGES += \
     com.dsi.ant.antradio_library \
     libantradio
 
-# Dataservices
-PRODUCT_PACKAGES += \
-    sockev \
-    rmnetcli \
-    librmnetctl
-
 # Debug
 ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.secure=0 \
