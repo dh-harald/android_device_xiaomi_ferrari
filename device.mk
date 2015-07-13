@@ -290,10 +290,10 @@ PRODUCT_PACKAGES += \
     libantradio
 
 # Dataservices
-PRODUCT_PACKAGES += \
-    sockev \
-    rmnetcli \
-    librmnetctl
+#PRODUCT_PACKAGES += \
+#    sockev \
+#    rmnetcli \
+#    librmnetctl
 
 # Debug
 ADDITIONAL_DEFAULT_PROPERTIES += \
