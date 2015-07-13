@@ -27,14 +27,11 @@ debug.mdpcomp.idletime=600
 debug.enable.sglscale=1
 
 ro.sf.lcd_density=480
-ril.ecclist=000,08,100,101,102,110,112,118,119,120,122,911,999
-persist.data.target=dpm1
-
 
 #
 # system props for the cne module
 #
-#persist.cne.feature=1
+persist.cne.feature=1
 
 #system props for the MM modules
 media.stagefright.enable-player=true
@@ -75,7 +72,7 @@ ro.qcom.ad.calib.data=/system/etc/calib.cfg
 # System props for telephony
 # System prop to turn on CdmaLTEPhone always
 telephony.lteOnCdmaDevice=1
-ro.telephony.default_network=9,1
+
 #
 # System props for bluetooh
 # System prop to turn on hfp client
@@ -171,7 +168,7 @@ drm.service.enabled=true
 ro.ril.hsxpa=1
 ro.ril.gprsclass=10
 ro.vendor.extension_library=libqti-perfd-client.so
-persist.radio.apm_sim_not_pwdn=1
+persist.radio.apm_sim_not_pwdn=0
 qcom.bt.dev_power_class=1
 ro.btconfig.if=smd
 ro.btconfig.dev=/dev/smd3
