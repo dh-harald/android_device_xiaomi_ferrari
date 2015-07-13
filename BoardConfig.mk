@@ -203,6 +203,7 @@ BOARD_USES_QCNE := true
 endif
 BOARD_USES_QCOM_HARDWARE := true
 
+
 # Vold
 BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun0/file

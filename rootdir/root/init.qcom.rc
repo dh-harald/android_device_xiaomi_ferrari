@@ -214,9 +214,6 @@ on post-fs-data
     mkdir /data/connectivity 0771 system system
     chown system system /data/connectivity
 
-    mkdir /data/connectivity/nsrm 0771 system system
-    chown system system /data/connectivity/nsrm
-
     # Create the directories used by DPM subsystem
     mkdir /data/dpm 0771 system system
     chown system system /data/dpm
@@ -515,10 +512,7 @@ service qmuxd /system/bin/qmuxd
 
 service netmgrd /system/bin/netmgrd
     class main
-
-on property:ro.use_data_netmgrd=false
-    # netmgr not supported on specific target
-    stop netmgrd
+    disabled
 
 service ipacm-diag /system/bin/ipacm-diag
     class main
@@ -543,6 +537,9 @@ service sensors /system/bin/sensors.qcom
     group root
     disabled
 
+on property:ro.use_data_netmgrd=false
+    # netmgr not supported on specific target
+    stop netmgrd
 
 # Adjust socket buffer to enlarge TCP receive window for high bandwidth
 # but only if ro.data.large_tcp_window_size property is set.
@@ -949,19 +946,3 @@ on property:persist.radio.modem=LTE-CU
     setprop persist.radio.data_no_toggle 1
     setprop persist.fd.scroff.timer 3000
     setprop persist.fd.scron.timer 10000
-
-service qseecomd /system/bin/qseecomd
-   class core
-   user root
-   group root
-
-service perfd /system/bin/perfd
-   class main
-   user root
-   group root
-   disabled
-
-service audiod /system/bin/audiod
-   class late_start
-   user system
-   group system
