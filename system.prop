@@ -126,9 +126,6 @@ persist.hwc.enable_vds=1
 vidc.enc.narrow.searchrange=1
 
 persist.radio.multisim.config=dsds
-persist.data.target=dpm1
-ril.ecclist=000,08,100,101,102,110,112,118,119,120,122,911,999
-ro.telephony.default_network=9,1
 
 #disable audio offload mode
 audio.offload.disable=1

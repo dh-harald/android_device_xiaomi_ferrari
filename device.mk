@@ -241,7 +241,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     wlan.driver.ath=0 \
     ro.use_data_netmgrd=true \
     persist.data.netmgrd.qos.enable=true \
-    persist.data.tcpackprio.enable=true \
     ro.data.large_tcp_window_size=true
 
 # IPC router config
