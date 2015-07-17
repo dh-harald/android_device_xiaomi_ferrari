@@ -537,6 +537,11 @@ vendor/lib64/libril-qcril-hook-oem.so
 vendor/lib64/libsystem_health_mon.so
 vendor/lib64/libxml.so
 
+# Sensors
+bin/sensor_select.sh
+lib/hw/sensors.lsm6db0.so
+lib64/hw/sensors.lsm6db0.so
+
 # Time services
 -app/TimeService/TimeService.apk
 bin/time_daemon
