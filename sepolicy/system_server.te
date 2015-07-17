@@ -4,3 +4,7 @@ allow system_server touchpanel_sysfs:dir { search };
 
 # CmHardwareService access to Color Calibration
 allow system_server color_device:chr_file rw_file_perms;
+
+# Sensor calibration files
+allow system_server persist_file : file { read write create getattr setattr open };
+allow system_server persist_file : dir { read write getattr add_name search };
