@@ -43,6 +43,9 @@ endif
 TARGET_BOARD_PLATFORM := msm8916
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno405
 
+# CPU
+TARGET_CPU_CORTEX_A53 := true
+
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
 
