@@ -569,3 +569,9 @@ lib/libminui.so
 lib64/libminui.so
 vendor/lib/libmmi.so
 vendor/lib64/libmmi.so
+
+# FM
+bin/fmconfig
+bin/fmfactorytest
+bin/fmfactorytestserver
+bin/fm_qsoc_patches
