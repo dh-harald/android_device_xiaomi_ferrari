@@ -559,3 +559,9 @@ bin/thermal-engine
 vendor/lib/libthermalclient.so
 vendor/lib64/libthermalclient.so
 vendor/lib64/libthermalioctl.so
+
+# Light
+vendor/lib/mmi_flashlight.so
+vendor/lib/mmi_keypadbacklight.so
+vendor/lib64/mmi_flashlight.so
+vendor/lib64/mmi_keypadbacklight.so
