@@ -565,3 +565,7 @@ vendor/lib/mmi_flashlight.so
 vendor/lib/mmi_keypadbacklight.so
 vendor/lib64/mmi_flashlight.so
 vendor/lib64/mmi_keypadbacklight.so
+lib/libminui.so
+lib64/libminui.so
+vendor/lib/libmmi.so
+vendor/lib64/libmmi.so
