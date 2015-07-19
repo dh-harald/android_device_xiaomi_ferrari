@@ -278,8 +278,7 @@ PRODUCT_COPY_FILES += \
 
 # Thermal config
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/thermal-engine-8939.conf:system/etc/thermal-engine-8939.conf \
-    $(LOCAL_PATH)/configs/thermal-engine-8939-in.conf:system/etc/thermal-engine-8939-in.conf \
+    $(LOCAL_PATH)/configs/thermal-engine-8939.conf:system/etc/thermal-engine-8939.conf
 
 # Proprietery Firmware
 PRODUCT_COPY_FILES += \
