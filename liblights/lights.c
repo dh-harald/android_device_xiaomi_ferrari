@@ -111,12 +111,31 @@ rgb_to_brightness(const struct light_state_t *state)
 }
 
 static int
+set_battery_light_locked(struct light_device_t *dev,
+        struct light_state_t const* state)
+{
+    int red, green, blue;
+    unsigned int colorRGB;
+
+    colorRGB = state->color;
+
+    red = (colorRGB >> 16) & 0xFF;
+    green = (colorRGB >> 8) & 0xFF;
+    blue = colorRGB & 0xFF;
+
+    write_int(RED_LED_FILE, red);
+    write_int(GREEN_LED_FILE, green);
+    write_int(BLUE_LED_FILE, blue);
+
+    return 0;
+}
+
+static int
 set_speaker_light_locked(struct light_device_t *dev,
         struct light_state_t const* state)
 {
     int red, green, blue;
     int blink;
-    int onMS, offMS;
     unsigned int colorRGB;
 
     if(!dev) {
@@ -133,48 +152,39 @@ set_speaker_light_locked(struct light_device_t *dev,
         return 0;
     }
 
-    switch (state->flashMode) {
-        case LIGHT_FLASH_TIMED:
-            onMS = state->flashOnMS;
-            offMS = state->flashOffMS;
-            break;
-        case LIGHT_FLASH_NONE:
-        default:
-            onMS = 0;
-            offMS = 0;
-            break;
-    }
+/*
+ Something wrong with light_state_t, becaulse state->flashMode is definetely not flashmode
+ looks state->flasmode is device locked or not & FlashOnMS is 1 if always on & 500/1000/etc when flash mode is set
+ */
 
-    colorRGB = state->color;
-
-#if 0
-    ALOGD("set_speaker_light_locked mode %d, colorRGB=%08X, onMS=%d, offMS=%d\n",
-            state->flashMode, colorRGB, onMS, offMS);
-#endif
-
-    red = (colorRGB >> 16) & 0xFF;
-    green = (colorRGB >> 8) & 0xFF;
-    blue = colorRGB & 0xFF;
-
-    if (onMS > 0 && offMS > 0) {
+    if (state->flashOnMS  != 1) {
         blink = 1;
     } else {
         blink = 0;
     }
 
+    colorRGB = state->color;
+
+    red = (colorRGB >> 16) & 0xFF;
+    green = (colorRGB >> 8) & 0xFF;
+    blue = colorRGB & 0xFF;
+
+    ALOGD("set_speaker_light_locked mode %d, colorRGB=%08X, red=%d, green=%d, blue=%d on=%d off=%d\n",
+            state->flashMode, colorRGB, red, green, blue, state->flashOnMS, state->flashOffMS);
+
     if (blink) {
+        write_int(RED_LED_FILE, 0);
+        write_int(GREEN_LED_FILE, 0);
+        write_int(BLUE_LED_FILE, 0);
         if (red) {
-            if (write_int(RED_BLINK_FILE, blink))
-                write_int(RED_LED_FILE, 0);
-	}
+            write_int(RED_BLINK_FILE, blink);
+        }
         if (green) {
-            if (write_int(GREEN_BLINK_FILE, blink))
-                write_int(GREEN_LED_FILE, 0);
-	}
+            write_int(GREEN_BLINK_FILE, blink);
+        }
         if (blue) {
-            if (write_int(BLUE_BLINK_FILE, blink))
-                write_int(BLUE_LED_FILE, 0);
-	}
+            write_int(BLUE_BLINK_FILE, blink);
+       }
     } else {
         write_int(RED_LED_FILE, red);
         write_int(GREEN_LED_FILE, green);
@@ -193,7 +203,7 @@ handle_speaker_light_locked(struct light_device_t *dev)
     } else if (is_lit(&g_notification)) {
         set_speaker_light_locked(dev, &g_notification);
     } else {
-        set_speaker_light_locked(dev, &g_battery);
+        set_battery_light_locked(dev, &g_battery);
     }
 }
 
@@ -334,7 +344,7 @@ struct hw_module_t HAL_MODULE_INFO_SYM = {
     .version_major = 1,
     .version_minor = 0,
     .id = LIGHTS_HARDWARE_MODULE_ID,
-    .name = "YU Lights Module",
+    .name = "Lights Module",
     .author = "The CyanogenMod Project",
     .methods = &lights_module_methods,
 };
