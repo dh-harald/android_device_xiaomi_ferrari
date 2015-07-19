@@ -17,6 +17,13 @@ BOARD_VENDOR := xiaomi
 
 LOCAL_PATH := device/xiaomi/ferrari
 
+# Include path
+TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
+
+# Init
+TARGET_INIT_VENDOR_LIB := libinit_msm
+TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
+
 # Architecture
 ifneq ($(FERRARI_32_BIT),true)
 TARGET_ARCH := arm64
@@ -49,6 +56,34 @@ TARGET_CPU_CORTEX_A53 := true
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
 
+# Kernel
+BOARD_CUSTOM_BOOTIMG_MK            := $(LOCAL_PATH)/mkbootimg.mk
+BOARD_MKBOOTIMG_ARGS               := --ramdisk_offset 0x02000000 --tags_offset 0x01E00000
+BOARD_KERNEL_CMDLINE               := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk
+BOARD_KERNEL_SEPARATED_DT          := true
+BOARD_KERNEL_BASE                  := 0x80000000
+BOARD_KERNEL_PAGESIZE              := 2048
+BOARD_KERNEL_TAGS_OFFSET           := 0x01E00000
+BOARD_RAMDISK_OFFSET               := 0x02000000
+TARGET_KERNEL_SOURCE               := kernel/xiaomi/ferrari
+ifneq ($(FERRARI_32_BIT),true)
+TARGET_KERNEL_ARCH := arm64
+TARGET_KERNEL_CONFIG := ferrari_debug_defconfig
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
+TARGET_KERNEL_HEADER_ARCH := arm64
+TARGET_USES_UNCOMPRESSED_KERNEL := true
+else
+TARGET_KERNEL_CONFIG := cyanogenmod_ferrari_defconfig
+endif
+ifneq ($(TARGET_BUILD_VARIANT),user)
+TARGET_KERNEL_ADDITIONAL_CONFIG := cyanogenmod_debug_config
+endif
+
+# Bootloader
+TARGET_BOOTLOADER_BOARD_NAME := MSM8916
+TARGET_NO_BOOTLOADER := false
+TARGET_NO_KERNEL := false
+
 # Audio
 BOARD_USES_ALSA_AUDIO := true
 TARGET_USES_QCOM_MM_AUDIO := true
@@ -61,12 +96,8 @@ BOARD_HAVE_BLUETOOTH_QCOM := true
 QCOM_BT_USE_SMD_TTY := true
 BLUETOOTH_HCI_USE_MCT := true
 
-# Bootloader
-TARGET_BOOTLOADER_BOARD_NAME := MSM8916
-TARGET_NO_BOOTLOADER := false
-TARGET_NO_KERNEL := false
-
 # Camera
+# TO DO - Put correct sensors and support
 BOARD_CAMERA_SENSORS := imx135_cp8675 imx214_cp8675 ov5648_cp8675
 TARGET_USE_VENDOR_CAMERA_EXT := true
 USE_DEVICE_SPECIFIC_CAMERA := true
@@ -100,6 +131,9 @@ TARGET_USES_NEW_ION_API := true
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD -DUSE_RIL_VERSION_10
 COMMON_GLOBAL_CPPFLAGS += -DNO_SECURE_DISCARD -DUSE_RIL_VERSION_10
 
+# CMHW
+BOARD_HARDWARE_CLASS := device/xiaomi/ferrari/cmhw
+
 # FM
 TARGET_QCOM_NO_FM_FIRMWARE := true
 AUDIO_FEATURE_ENABLED_FM := true
@@ -110,36 +144,6 @@ EXTENDED_FONT_FOOTPRINT := true
 # GPS
 TARGET_GPS_HAL_PATH := $(LOCAL_PATH)/gps
 TARGET_NO_RPC := true
-
-# Include path
-TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
-
-# Init
-TARGET_INIT_VENDOR_LIB := libinit_msm
-TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
-
-# Kernel
-BOARD_CUSTOM_BOOTIMG_MK            := $(LOCAL_PATH)/mkbootimg.mk
-BOARD_MKBOOTIMG_ARGS               := --ramdisk_offset 0x02000000 --tags_offset 0x01E00000
-BOARD_KERNEL_CMDLINE               := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk
-BOARD_KERNEL_SEPARATED_DT          := true
-BOARD_KERNEL_BASE                  := 0x80000000
-BOARD_KERNEL_PAGESIZE              := 2048
-BOARD_KERNEL_TAGS_OFFSET           := 0x01E00000
-BOARD_RAMDISK_OFFSET               := 0x02000000
-TARGET_KERNEL_SOURCE               := kernel/xiaomi/ferrari
-ifneq ($(FERRARI_32_BIT),true)
-TARGET_KERNEL_ARCH := arm64
-TARGET_KERNEL_CONFIG := ferrari_debug_defconfig
-TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
-TARGET_KERNEL_HEADER_ARCH := arm64
-TARGET_USES_UNCOMPRESSED_KERNEL := true
-else
-TARGET_KERNEL_CONFIG := cyanogenmod_ferrari_defconfig
-endif
-ifneq ($(TARGET_BUILD_VARIANT),user)
-TARGET_KERNEL_ADDITIONAL_CONFIG := cyanogenmod_debug_config
-endif
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
@@ -205,7 +209,6 @@ ifneq ($(QCPATH),)
 BOARD_USES_QCNE := true
 endif
 BOARD_USES_QCOM_HARDWARE := true
-
 
 # Vold
 BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true

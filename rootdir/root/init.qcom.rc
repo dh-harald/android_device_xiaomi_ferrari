@@ -188,6 +188,11 @@ on boot
     ## TelephonyManager.java requires this
     chmod 0644 /proc/cmdline
 
+# Vibrator
+    chmod 0660 /dev/tspdrv
+    chown root shell /dev/tspdrv
+    chown system system /sys/class/timed_output/vibrator/enable
+    
 # msm specific files that need to be created on /data
 on post-fs-data
     # Create directory for TZ Apps
