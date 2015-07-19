@@ -159,9 +159,6 @@ ro.sys.oosenhance.timer=20000
 # enable dirac sound for speaker
 persist.audio.dirac.speaker=true
 
-#Sensors
-ro.hardware.sensors=lsm6db0
-
 #
 # ADDITIONAL_BUILD_PROPERTIES
 #
