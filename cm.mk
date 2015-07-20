@@ -21,7 +21,7 @@ $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 PRODUCT_DEVICE := ferrari
 PRODUCT_NAME := cm_ferrari
 PRODUCT_BRAND := Xiaomi
-PRODUCT_MODEL := MI 4i
+PRODUCT_MODEL := Mi 4i
 PRODUCT_MANUFACTURER := Xiaomi
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
