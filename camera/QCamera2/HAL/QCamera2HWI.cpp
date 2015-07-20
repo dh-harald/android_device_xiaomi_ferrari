@@ -55,9 +55,6 @@
 
 namespace qcamera {
 
-static int gCamOpened[MM_CAMERA_MAX_NUM_SENSORS] = {0};
-static pthread_mutex_t gSingleUseLock = PTHREAD_MUTEX_INITIALIZER;
-
 cam_capability_t *gCamCapability[MM_CAMERA_MAX_NUM_SENSORS];
 qcamera_saved_sizes_list savedSizes[MM_CAMERA_MAX_NUM_SENSORS];
 
@@ -1123,18 +1120,8 @@ int QCamera2HardwareInterface::openCamera(struct hw_device_t **hw_device)
         return PERMISSION_DENIED;
     }
     CDBG_HIGH("[KPI Perf] %s: E PROFILE_OPEN_CAMERA camera id %d", __func__,mCameraId);
-
-    pthread_mutex_lock(&gSingleUseLock);
-
-    if (gCamOpened[!mCameraId]) {
-        ALOGE("Failure: other camera already opened");
-        pthread_mutex_unlock(&gSingleUseLock);
-        return -EUSERS;
-    }
-
     rc = openCamera();
     if (rc == NO_ERROR){
-        gCamOpened[mCameraId] = 1;
         *hw_device = &mCameraDevice.common;
         if (m_thermalAdapter.init(this) != 0) {
           ALOGE("Init thermal adapter failed");
@@ -1142,9 +1129,6 @@ int QCamera2HardwareInterface::openCamera(struct hw_device_t **hw_device)
     }
     else
         *hw_device = NULL;
-
-    pthread_mutex_unlock(&gSingleUseLock);
-
     return rc;
 }
 
@@ -1304,8 +1288,6 @@ int QCamera2HardwareInterface::closeCamera()
         return NO_ERROR;
     }
 
-    pthread_mutex_lock(&gSingleUseLock);
-
     pthread_mutex_lock(&m_parm_lock);
 
     // set open flag to false
@@ -1347,8 +1329,6 @@ int QCamera2HardwareInterface::closeCamera()
 
     rc = mCameraHandle->ops->close_camera(mCameraHandle->camera_handle);
     mCameraHandle = NULL;
-    gCamOpened[mCameraId] = 0;
-    pthread_mutex_unlock(&gSingleUseLock);
     CDBG_HIGH("%s: X", __func__);
     return rc;
 }
@@ -1590,14 +1570,12 @@ uint8_t QCamera2HardwareInterface::getBufNumRequired(cam_stream_type_t stream_ty
                 if (minCaptureBuffers == 1 && !mLongshotEnabled) {
                     // Single ZSL snapshot case
                     bufferCnt = zslQBuffers + CAMERA_MIN_STREAMING_BUFFERS +
-                            mParameters.getNumOfExtraBuffersForImageProc() +
-                            mParameters.getNumOfExtraHDRInBufsIfNeeded();
+                            mParameters.getNumOfExtraBuffersForImageProc();
                 }
                 else {
                     // ZSL Burst or Longshot case
                     bufferCnt = zslQBuffers + minCircularBufNum +
-                            mParameters.getNumOfExtraBuffersForImageProc() +
-                            mParameters.getNumOfExtraHDRInBufsIfNeeded();
+                            mParameters.getNumOfExtraBuffersForImageProc();
                 }
                 if (getSensorType() == CAM_SENSOR_YUV) {
                     //ISP allocates native buffers in YUV case
@@ -6386,7 +6364,7 @@ bool QCamera2HardwareInterface::needReprocess()
             return true;
         }
     } else {
-        if (required_mask & CAM_QCOM_FEATURE_CPP) {
+        if (feature_mask & CAM_QCOM_FEATURE_CPP) {
             CDBG_HIGH("%s: Need CPP in non-ZSL mode", __func__);
             pthread_mutex_unlock(&m_parm_lock);
             return true;
