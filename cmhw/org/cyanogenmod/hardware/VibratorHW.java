@@ -20,7 +20,7 @@ import org.cyanogenmod.hardware.util.FileUtils;
 import java.io.File;
 
 public class VibratorHW {
-    private static String LEVEL_PATH = "sys/class/timed_output/vibrator/enable";
+    private static String LEVEL_PATH = "/sys/class/timed_output/vibrator/enable";
 
     public static boolean isSupported() {
         return new File(LEVEL_PATH).exists();
