@@ -24,6 +24,11 @@ TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 TARGET_INIT_VENDOR_LIB := libinit_msm
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
 
+# Bootloader
+TARGET_BOOTLOADER_BOARD_NAME := MSM8916
+TARGET_NO_BOOTLOADER := false
+TARGET_NO_KERNEL := false
+
 # Architecture
 ifneq ($(FERRARI_32_BIT),true)
 TARGET_ARCH := arm64
@@ -49,6 +54,9 @@ TARGET_CPU_VARIANT := cortex-a53
 endif
 TARGET_BOARD_PLATFORM := msm8916
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno405
+
+# Bionic Optimisation
+TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
 
 # CPU
 TARGET_CPU_CORTEX_A53 := true
@@ -78,11 +86,6 @@ endif
 ifneq ($(TARGET_BUILD_VARIANT),user)
 TARGET_KERNEL_ADDITIONAL_CONFIG := cyanogenmod_debug_config
 endif
-
-# Bootloader
-TARGET_BOOTLOADER_BOARD_NAME := MSM8916
-TARGET_NO_BOOTLOADER := false
-TARGET_NO_KERNEL := false
 
 # Audio
 BOARD_USES_ALSA_AUDIO := true
