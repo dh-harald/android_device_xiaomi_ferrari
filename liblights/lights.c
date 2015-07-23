@@ -42,23 +42,41 @@ static struct light_state_t g_battery;
 const char *const RED_LED_FILE
         = "/sys/class/leds/red/brightness";
 
-const char *const GREEN_LED_FILE
-        = "/sys/class/leds/green/brightness";
-
-const char *const BLUE_LED_FILE
-        = "/sys/class/leds/blue/brightness";
-
-const char *const LCD_FILE
-        = "/sys/class/leds/lcd-backlight/brightness";
-
 const char *const RED_BLINK_FILE
         = "/sys/class/leds/red/blink";
+
+const char *const RED_RISETIME_FILE
+        = "/sys/class/leds/red/risetime";
+
+const char *const RED_FALLTIME_FILE
+        = "/sys/class/leds/red/falltime";
+
+const char *const GREEN_LED_FILE
+        = "/sys/class/leds/green/brightness";
 
 const char *const GREEN_BLINK_FILE
         = "/sys/class/leds/green/blink";
 
+const char *const GREEN_RISETIME_FILE
+        = "/sys/class/leds/green/risetime";
+
+const char *const GREEN_FALLTIME_FILE
+        = "/sys/class/leds/green/falltime";
+
+const char *const BLUE_LED_FILE
+        = "/sys/class/leds/blue/brightness";
+
 const char *const BLUE_BLINK_FILE
         = "/sys/class/leds/blue/blink";
+
+const char *const BLUE_RISETIME_FILE
+        = "/sys/class/leds/blue/risetime";
+
+const char *const BLUE_FALLTIME_FILE
+        = "/sys/class/leds/blue/falltime";
+
+const char *const LCD_FILE
+        = "/sys/class/leds/lcd-backlight/brightness";
 
 const char *const BUTTONS_FILE
         = "/sys/class/leds/button-backlight/brightness";
@@ -111,11 +129,47 @@ rgb_to_brightness(const struct light_state_t *state)
 }
 
 static int
+convert_ms(int ms)
+{
+    int ms_out = 3;
+    if (ms <= 250) {
+        ms_out = 1;
+    } else if (ms <=500 ) {
+        ms_out = 2;
+    } else if (ms <=1000) {
+        ms_out = 3;
+    } else if (ms <=2500) {
+        ms_out = 4;
+    } else if (ms <=5000) {
+        ms_out = 5;
+    }
+    return ms_out;
+}
+
+void reset_leds(void)
+{
+    write_int(RED_LED_FILE, 0);
+    write_int(GREEN_LED_FILE, 0);
+    write_int(BLUE_LED_FILE, 0);
+    write_int(RED_BLINK_FILE, 0);
+    write_int(GREEN_BLINK_FILE, 0);
+    write_int(BLUE_BLINK_FILE, 0);
+    write_int(RED_RISETIME_FILE, 3);
+    write_int(GREEN_RISETIME_FILE, 3);
+    write_int(BLUE_RISETIME_FILE, 3);
+    write_int(RED_FALLTIME_FILE, 3);
+    write_int(GREEN_FALLTIME_FILE, 3);
+    write_int(BLUE_FALLTIME_FILE, 3);
+}
+
+static int
 set_battery_light_locked(struct light_device_t *dev,
         struct light_state_t const* state)
 {
     int red, green, blue;
     unsigned int colorRGB;
+
+    reset_leds();
 
     colorRGB = state->color;
 
@@ -135,20 +189,17 @@ set_speaker_light_locked(struct light_device_t *dev,
         struct light_state_t const* state)
 {
     int red, green, blue;
-    int blink;
+    int blink, blinktime = 3;
+
     unsigned int colorRGB;
 
     if(!dev) {
         return -1;
     }
 
+    reset_leds();
+
     if (state == NULL) {
-        write_int(RED_LED_FILE, 0);
-        write_int(GREEN_LED_FILE, 0);
-        write_int(BLUE_LED_FILE, 0);
-        write_int(RED_BLINK_FILE, 0);
-        write_int(GREEN_BLINK_FILE, 0);
-        write_int(BLUE_BLINK_FILE, 0);
         return 0;
     }
 
@@ -159,6 +210,7 @@ set_speaker_light_locked(struct light_device_t *dev,
 
     if (state->flashOnMS  != 1) {
         blink = 1;
+        blinktime = convert_ms(state->flashOnMS);
     } else {
         blink = 0;
     }
@@ -173,17 +225,23 @@ set_speaker_light_locked(struct light_device_t *dev,
             state->flashMode, colorRGB, red, green, blue, state->flashOnMS, state->flashOffMS);
 
     if (blink) {
-        write_int(RED_LED_FILE, 0);
-        write_int(GREEN_LED_FILE, 0);
-        write_int(BLUE_LED_FILE, 0);
         if (red) {
+            write_int(RED_LED_FILE, 0);
             write_int(RED_BLINK_FILE, blink);
+            write_int(RED_RISETIME_FILE, blinktime);
+            write_int(RED_FALLTIME_FILE, blinktime);
         }
         if (green) {
+            write_int(GREEN_LED_FILE, 0);
             write_int(GREEN_BLINK_FILE, blink);
+            write_int(GREEN_RISETIME_FILE, blinktime);
+            write_int(GREEN_FALLTIME_FILE, blinktime);
         }
         if (blue) {
+            write_int(BLUE_LED_FILE, 0);
             write_int(BLUE_BLINK_FILE, blink);
+            write_int(BLUE_RISETIME_FILE, blinktime);
+            write_int(BLUE_FALLTIME_FILE, blinktime);
        }
     } else {
         write_int(RED_LED_FILE, red);
