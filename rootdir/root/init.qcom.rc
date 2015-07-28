@@ -195,8 +195,14 @@ on boot
     
     ### fix lights permissions - TODO: move to ueventd.qcom.rc
     chown system system /sys/class/leds/red/blink
+    chown system system /sys/class/leds/red/risetime
+    chown system system /sys/class/leds/red/falltime
     chown system system /sys/class/leds/green/blink
+    chown system system /sys/class/leds/green/risetime
+    chown system system /sys/class/leds/green/falltime
     chown system system /sys/class/leds/blue/blink
+    chown system system /sys/class/leds/blue/risetime
+    chown system system /sys/class/leds/blue/falltime
 
 
 # msm specific files that need to be created on /data

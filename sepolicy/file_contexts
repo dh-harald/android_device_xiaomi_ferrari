@@ -1,5 +1,5 @@
 # Dev nodes
-/dev/tspdrv                                                               u:object_r:tspdrv_device:s0
+#/dev/tspdrv                                                               u:object_r:tspdrv_device:s0
 
 # for Settings' access to VibratorHW
 /sys/class/timed_output/vibrator/enable                                   u:object_r:sysfs_vibrator:s0
