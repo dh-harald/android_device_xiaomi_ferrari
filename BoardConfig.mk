@@ -71,6 +71,8 @@ BOARD_KERNEL_CMDLINE               := console=ttyHSL0,115200,n8 androidboot.cons
 BOARD_KERNEL_SEPARATED_DT          := true
 BOARD_KERNEL_BASE                  := 0x80000000
 BOARD_KERNEL_PAGESIZE              := 2048
+BOARD_KERNEL_TAGS_OFFSET           := 0x01E00000
+BOARD_RAMDISK_OFFSET               := 0x02000000
 TARGET_KERNEL_SOURCE               := kernel/xiaomi/ferrari
 ifneq ($(FERRARI_32_BIT),true)
 TARGET_KERNEL_ARCH := arm64
@@ -133,10 +135,7 @@ COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD -DUSE_RIL_VERSION_10
 COMMON_GLOBAL_CPPFLAGS += -DNO_SECURE_DISCARD -DUSE_RIL_VERSION_10
 
 # CMHW
-#BOARD_HARDWARE_CLASS := device/xiaomi/ferrari/cmhw
-
-# Compression - Smoosh all the things
-TARGET_TRANSPARENT_COMPRESSION_METHOD := lz4
+BOARD_HARDWARE_CLASS := device/xiaomi/ferrari/cmhw
 
 # FM
 TARGET_QCOM_NO_FM_FIRMWARE := true
