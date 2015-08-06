@@ -40,6 +40,7 @@ PRODUCT_CHARACTERISTICS := nosdcard
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.qcom \
+    chargeonlymode \
     init.qcom.rc \
     init.target.rc \
     init.qcom.usb.rc \
