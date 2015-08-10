@@ -204,6 +204,8 @@ on boot
     chown system system /sys/class/leds/blue/risetime
     chown system system /sys/class/leds/blue/falltime
 
+    ## cmhw permissions
+    chown system system /sys/devices/soc.0/78b9000.i2c/i2c-5/5-004a/disable_keys
 
 # msm specific files that need to be created on /data
 on post-fs-data
