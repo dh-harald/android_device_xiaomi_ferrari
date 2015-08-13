@@ -83,9 +83,6 @@ TARGET_USES_UNCOMPRESSED_KERNEL := true
 else
 TARGET_KERNEL_CONFIG := cyanogenmod_ferrari_defconfig
 endif
-ifneq ($(TARGET_BUILD_VARIANT),user)
-TARGET_KERNEL_ADDITIONAL_CONFIG := cyanogenmod_debug_config
-endif
 
 # Audio
 BOARD_USES_ALSA_AUDIO := true
