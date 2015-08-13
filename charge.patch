@@ -1,0 +1,21 @@
+From 352e46bbb2067fa4f572ccd676861580a00454d5 Mon Sep 17 00:00:00 2001
+From: Peter Nyilas <peter.nyilas@byyd-tech.com>
+Date: Fri, 7 Aug 2015 18:59:33 +0100
+Subject: [PATCH] fix charging mode
+
+---
+ rootdir/root/init.qcom.rc | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/rootdir/root/init.qcom.rc b/rootdir/root/init.qcom.rc
+index 3b6d552..1f7825d 100644
+--- a/rootdir/root/init.qcom.rc
++++ b/rootdir/root/init.qcom.rc
+@@ -867,7 +867,6 @@ service hcidump /system/bin/sh /system/etc/hcidump.sh
+ 
+ service charger /sbin/chargeonlymode
+     class charger
+-    seclabel u:r:chargeonlymode:s0
+ 
+ service ssr_diag /system/bin/ssr_diag
+     class late_start
