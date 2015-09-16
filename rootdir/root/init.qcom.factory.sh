@@ -134,6 +134,10 @@
     chown -h root.system /sys/module/lowmemorykiller/parameters/minfree
     chmod -h 0664 /sys/module/lowmemorykiller/parameters/minfree
 
+    # Adaptive LMK
+    echo 1 > /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk
+    echo 81250 > /sys/module/lowmemorykiller/parameters/vmpressure_file_min
+
     # Tweak background writeout
     echo 200 > /proc/sys/vm/dirty_expire_centisecs
     echo 5 > /proc/sys/vm/dirty_background_ratio
