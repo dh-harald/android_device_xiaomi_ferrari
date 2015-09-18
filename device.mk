@@ -322,4 +322,4 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # TWRP
 PRODUCT_COPY_FILES += \
-    device/xiaomi/ferrari/twrp.fstab:recovery/root/etc/twrp.fstab
+    device/xiaomi/ferrari/twrp/twrp.fstab:root/etc/twrp.fstab
