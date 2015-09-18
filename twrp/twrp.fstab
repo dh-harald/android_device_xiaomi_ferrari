@@ -1,0 +1,14 @@
+
+/efs1         emmc   /dev/block/mmcblk0p20 flags=backup=1;display=EFS
+/efs2         emmc   /dev/block/mmcblk0p21 flags=backup=1;subpartitionof=/efs1
+/efs3         emmc	 /dev/block/mmcblk0p22 flags=backup=1;subpartitionof=/efs2
+/efs4         emmc 	 /dev/block/mmcblk0p25 flags=backup=1;subpartitionof=/efs3
+#mount point      fstype        device         [device2] [length=]	flags
+/system		ext4	/dev/block/bootdevice/by-name/system
+/cache		ext4	/dev/block/bootdevice/by-name/cache
+/data		ext4	/dev/block/bootdevice/by-name/userdata		flags=encryptable=/dev/block/bootdevice/by-name/bk1
+/boot		emmc	/dev/block/bootdevice/by-name/boot
+/recovery	emmc	/dev/block/bootdevice/by-name/recovery
+/misc		emmc	/dev/block/bootdevice/by-name/misc
+# Removable storage
+/usb_otg	vfat	/dev/block/sda1		/dev/block/sda		flags=display="USB-OTG";storage;wipeingui;removable

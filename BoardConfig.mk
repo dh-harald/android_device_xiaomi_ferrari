@@ -175,9 +175,20 @@ TARGET_POWERHAL_VARIANT := qcom
 RECOVERY_FSTAB_VERSION := 2
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/root/fstab.qcom
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
-TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+TARGET_RECOVERY_PIXEL_FORMAT := "RGB_565"
 TARGET_RECOVERY_LCD_BACKLIGHT_PATH := \"/sys/class/leds/lcd-backlight/brightness\"
 BOARD_HAS_NO_SELECT_BUTTON := true
+
+# TWRP-Specific
+TW_THEME := portrait_hdpi
+BOARD_HAS_NO_REAL_SDCARD := true
+RECOVERY_SDCARD_ON_DATA := true
+TW_INCLUDE_CRYPTO := true
+TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
+BOARD_SUPPRESS_SECURE_ERASE := true
+TW_TARGET_USES_QCOM_BSP := true
+TW_NEW_ION_HEAP := true
 
 # RIL
 PROTOBUF_SUPPORTED := true
@@ -225,5 +236,7 @@ WIFI_DRIVER_FW_PATH_STA          := "sta"
 WPA_SUPPLICANT_VERSION           := VER_0_8_X
 TARGET_USES_QCOM_WCNSS_QMI       := true
 
+
 # inherit from the proprietary version
 -include vendor/xiaomi/ferrari/BoardConfigVendor.mk
+
