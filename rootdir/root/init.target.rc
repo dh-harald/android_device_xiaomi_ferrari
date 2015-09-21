@@ -48,6 +48,7 @@ on fs
     # results in failure to launch late-start class.
 
     wait /dev/block/bootdevice/by-name/cache
+    mount f2fs /dev/block/bootdevice/by-name/cache /cache rw discard nosuid nodev noatime nodiratime inline_xattr
     mount ext4 /dev/block/bootdevice/by-name/cache /cache nosuid nodev barrier=1
 
     wait /dev/block/bootdevice/by-name/persist
