@@ -319,7 +319,3 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.service.adb.enable=1 \
     persist.service.debuggable=1 \
     persist.sys.usb.config=mtp,adb
-
-# TWRP
-PRODUCT_COPY_FILES += \
-    device/xiaomi/ferrari/twrp/twrp.fstab:root/etc/twrp.fstab

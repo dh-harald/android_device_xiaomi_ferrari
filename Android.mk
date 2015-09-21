@@ -133,4 +133,9 @@ $(shell mkdir -p $(TARGET_OUT)/etc/firmware/wcd9306; \
     ln -sf /data/misc/audio/mbhc.bin \
 	    $(TARGET_OUT)/etc/firmware/wcd9306/wcd9306_mbhc.bin;)
 
+# TWRP
+$(shell mkdir -p $(TARGET_RECOVERY_ROOT_OUT)/etc; \
+    cp -a device/xiaomi/ferrari/twrp/twrp.fstab \
+	    $(TARGET_RECOVERY_ROOT_OUT)/etc;)
+
 endif
