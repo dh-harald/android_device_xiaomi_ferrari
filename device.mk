@@ -52,7 +52,8 @@ PRODUCT_PACKAGES += \
     init.qcom.factory.sh \
     init.qcom.sh \
     init.qcom.syspart_fixup.sh \
-    init.qcom.usb.sh
+    init.qcom.usb.sh \
+    init.qcom.zram.sh
 
 # QCOM Config Script
 PRODUCT_PACKAGES += \
