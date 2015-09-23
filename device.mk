@@ -311,7 +311,7 @@ PRODUCT_PACKAGES += \
     services-ext \
     init.cne.rc
 
-PRODUCT_PROPERTY_OVERRIDES +=
+PRODUCT_PROPERTY_OVERRIDES += \
     persist.cne.feature=4
 endif
 
