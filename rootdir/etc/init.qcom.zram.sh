@@ -30,3 +30,8 @@ echo 368M > /sys/block/zram0/disksize
 mkswap /dev/block/zram0
 swapon /dev/block/zram0
 setprop ro.config.zram true
+echo 1 > /sys/module/process_reclaim/parameters/enable_process_reclaim
+echo 50 > /sys/module/process_reclaim/parameters/pressure_min
+echo 70 > /sys/module/process_reclaim/parameters/pressure_max
+echo 512 > /sys/module/process_reclaim/parameters/per_swap_size
+echo 30 > /sys/module/process_reclaim/parameters/swap_opt_eff
