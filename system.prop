@@ -97,8 +97,6 @@ tunnel.audio.encode = false
 audio.offload.buffer.size.kb=64
 #Minimum duration for offload playback in secs
 audio.offload.min.duration.secs=30
-#Enable offload audio video playback by default
-av.offload.enable=true
 #enable voice path for PCM VoIP by default
 use.voice.path.for.pcm.voip=true
 
@@ -128,8 +126,8 @@ vidc.enc.narrow.searchrange=1
 persist.radio.multisim.config=dsds
 
 #disable audio offload mode
-audio.offload.pcm.16bit.enable=false
-audio.offload.pcm.24bit.enable=true
+audio.offload.disable=1
+audio.offload.pcm.enable=false
 
 #property to enable DS2 dap
 audio.dolby.ds2.enabled=true
