@@ -55,7 +55,7 @@ public abstract class FerrariSensor {
         mSensorManager = (SensorManager) mContext.getSystemService(Context.SENSOR_SERVICE);
         mSensor = mSensorManager.getDefaultSensor(mType);
         mSensorWakeLock = mPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
-		"FerrariSensorWakeLock");
+                "FerrariSensorWakeLock");
     }
 
     public void enable() {
@@ -70,7 +70,7 @@ public abstract class FerrariSensor {
     protected void launchDozePulse() {
         Log.d(TAG, "Launch doze pulse");
         mContext.sendBroadcastAsUser(new Intent(DOZE_INTENT),
-		new UserHandle(UserHandle.USER_CURRENT));
+                new UserHandle(UserHandle.USER_CURRENT));
     }
 
     protected abstract void onSensorEvent(SensorEvent event);
