@@ -202,14 +202,6 @@ include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += \
     device/xiaomi/ferrari/sepolicy
 
-BOARD_SEPOLICY_UNION += \
-    file.te \
-    file_contexts \
-    system_app.te \
-    system_server.te \
-    system.te \
-    wcnss_service.te
-
 # Qualcomm support
 BOARD_USES_QC_TIME_SERVICES := true
 ifneq ($(QCPATH),)
