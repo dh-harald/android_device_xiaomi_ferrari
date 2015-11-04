@@ -204,6 +204,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Camera
 PRODUCT_PACKAGES += \
     camera.msm8916 \
+    libstlport \
     libmm-qcamera
 
 # lights
