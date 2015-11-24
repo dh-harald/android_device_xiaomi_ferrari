@@ -132,6 +132,9 @@ audio.offload.pcm.enable=false
 #property to enable DS2 dap
 audio.dolby.ds2.enabled=true
 
+#reverse engineering
+persist.audio.FFSP.enable=true
+
 # enable usb otg setting
 persist.sys.isUsbOtgEnabled=true
 
