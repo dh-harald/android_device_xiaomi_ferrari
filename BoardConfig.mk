@@ -65,7 +65,7 @@ TARGET_CPU_CORTEX_A53 := true
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
 
 # Kernel
-BOARD_CUSTOM_BOOTIMG_MK            := $(LOCAL_PATH)/mkbootimg.mk
+BOARD_DTBTOOL_ARGS                 := -2
 BOARD_MKBOOTIMG_ARGS               := --ramdisk_offset 0x02000000 --tags_offset 0x01E00000
 BOARD_KERNEL_CMDLINE               := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk
 BOARD_KERNEL_SEPARATED_DT          := true
