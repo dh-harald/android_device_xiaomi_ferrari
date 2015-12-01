@@ -24,8 +24,6 @@ vendor/lib/soundfx/libqcvirt.so
 vendor/lib/hw/sound_trigger.primary.msm8916.so
 vendor/lib/libhwdaphal.so
 vendor/lib64/libhwdaphal.so
-lib/hw/audio.primary.msm8916.so
-lib64/hw/audio.primary.msm8916.so
 
 # Bluetooth
 bin/btnvtool
