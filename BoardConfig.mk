@@ -134,7 +134,6 @@ BOARD_HARDWARE_CLASS := device/xiaomi/ferrari/cmhw
 
 # FM
 TARGET_QCOM_NO_FM_FIRMWARE := true
-AUDIO_FEATURE_ENABLED_FM := true
 
 # Fonts
 EXTENDED_FONT_FOOTPRINT := true
