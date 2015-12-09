@@ -535,7 +535,7 @@ vendor/lib64/libsystem_health_mon.so
 vendor/lib64/libxml.so
 
 # Sensors
-bin/sensor_select.sh
+#bin/sensor_select.sh
 lib/hw/sensors.lsm6db0.so
 lib64/hw/sensors.lsm6db0.so
 
